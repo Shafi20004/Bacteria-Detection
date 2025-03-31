@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bacterial Detector - YOLOv8</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start p-6">
+
+    <div class="w-full max-w-xl bg-white rounded-2xl shadow-lg p-6 mt-8">
+        <h1 class="text-3xl font-bold text-center text-indigo-600 mb-6">🧫 Bacterial Detector</h1>
+
+        <form method="POST" enctype="multipart/form-data" class="space-y-4">
+            <input 
+                type="file" 
+                name="file" 
+                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+                       file:rounded-full file:border-0 file:text-sm file:font-semibold
+                       file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                required
+            >
+            <button type="submit" 
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-xl transition">
+                🚀 Detect Bacteria
+            </button>
+        </form>
+
+        {% if uploaded %}
+        <div class="mt-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">🧪 Prediction Result:</h2>
+            <img src="{{ url_for('static', filename='predicted/predict/' + pred_img) }}" 
+                 alt="Predicted Image" 
+                 class="rounded-xl border shadow-md w-full object-contain">
+        </div>
+        {% endif %}
+    </div>
+
+    <footer class="mt-12 text-sm text-gray-400 text-center">
+        Built with 💖 and YOLOv8 | Flask App
+    </footer>
+</body>
+</html>
