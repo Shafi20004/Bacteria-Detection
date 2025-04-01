@@ -1,6 +1,11 @@
 import gc
 import torch
 import shutil
+from flask import Flask, render_template, request
+import os
+from werkzeug.utils import secure_filename
+import pickle
+from ultralytics import YOLO
 
 # Clean up memory
 gc.collect()
@@ -14,11 +19,7 @@ if os.path.exists(predict_subfolder):
     shutil.rmtree(predict_subfolder)
 
 
-from flask import Flask, render_template, request
-import os
-from werkzeug.utils import secure_filename
-import pickle
-from ultralytics import YOLO
+
 
 app = Flask(__name__)
 
