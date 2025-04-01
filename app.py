@@ -1,25 +1,8 @@
-import gc
-import torch
-import shutil
 from flask import Flask, render_template, request
 import os
 from werkzeug.utils import secure_filename
 import pickle
 from ultralytics import YOLO
-
-# Clean up memory
-gc.collect()
-if torch.cuda.is_available():
-    torch.cuda.empty_cache()
-
-# Optionally clean old YOLO prediction folders (like predict/)
-PRED_FOLDER = 'static/predicted'
-predict_subfolder = os.path.join(PRED_FOLDER, 'predict')
-if os.path.exists(predict_subfolder):
-    shutil.rmtree(predict_subfolder)
-
-
-
 
 app = Flask(__name__)
 
@@ -65,4 +48,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
