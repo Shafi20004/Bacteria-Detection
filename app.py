@@ -1,3 +1,19 @@
+import gc
+import torch
+import shutil
+
+# Clean up memory
+gc.collect()
+if torch.cuda.is_available():
+    torch.cuda.empty_cache()
+
+# Optionally clean old YOLO prediction folders (like predict/)
+PRED_FOLDER = 'static/predicted'
+predict_subfolder = os.path.join(PRED_FOLDER, 'predict')
+if os.path.exists(predict_subfolder):
+    shutil.rmtree(predict_subfolder)
+
+
 from flask import Flask, render_template, request
 import os
 from werkzeug.utils import secure_filename
